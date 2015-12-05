@@ -1,0 +1,60 @@
+* {
+  margin: 0px;
+  padding: 0px;
+}
+
+table {
+  border-collapse: collapse;
+  border-spacing: 0; 
+}
+
+#board {
+  margin-top: 50px;
+  margin: auto;
+}
+
+#board tr td {
+  width: 100px;
+  height: 100px;
+  border: 1px solid #1c1c1c;
+  font-size: 50px; 
+}
+
+#board tr td:hover {
+  background: #e4e4e4;
+  cursor: pointer;
+}
+
+#gameWrapper {
+  border: solid;
+  width: 400px;
+  margin: auto;
+  margin-top: 50px;
+  text-align: center;
+}
+
+#boardWrapper {
+  margin: 20px auto 20px auto; 
+  width: 310px; 
+}
+
+#gameHeader {
+  font-size: 40px;
+  margin-top: 20px; 
+}
+
+#btnWrapper {
+  margin-bottom: 20px; 
+}
+
+#btn {
+  width: 310px; 
+  background: white; 
+  padding: 20px; 
+  font-size: 20px;
+  background: lightgray;
+}
+
+#btn:active {
+  font-weight: bold;
+}
