@@ -7,7 +7,8 @@ So far my primitive algorithm does 3 things:
 2. block an immediate win  
 3. otherwise make a random move  
   
-I know I can add in new steps of creating and blocking a fork (look for two 2 in a rows) as the next priority.  
-However I think the minimax only requires a win and a loss condition as heuristics for the base case.
+The next check (between step 2 and 3) is to look for forks (two in a row).  
+However since the game tree is tiny, these heuristics are unnecessary.  
+A brute force minimax solution using the two checks as base cases is possible.  
 
 http://hills.ccsf.edu/~dwang6/cnit133/project/tic_tac_toe/index.html
