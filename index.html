@@ -1,0 +1,37 @@
+<!doctype html>
+<html lang='en-us'>
+<head>
+<title>Tic Tac Toe</title>
+<link rel='stylesheet' type='text/css' href='styling.css' />
+</head>
+<body>
+
+<div id='gameWrapper'>
+  <h3 id='gameHeader'>Tic Tac Toe</h3>
+  <div id='boardWrapper'>
+    <table border='1' id='board'>
+      <tr>
+        <td id='grid_0' onclick='processMove(0)'></td>
+        <td id='grid_1' onclick='processMove(1)'></td>
+        <td id='grid_2' onclick='processMove(2)'></td>
+      </tr>
+      <tr>
+        <td id='grid_3' onclick='processMove(3)'></td>
+        <td id='grid_4' onclick='processMove(4)'></td>
+        <td id='grid_5' onclick='processMove(5)'></td>
+      </tr>
+      <tr>
+        <td id='grid_6' onclick='processMove(6)'></td>
+        <td id='grid_7' onclick='processMove(7)'></td>
+        <td id='grid_8' onclick='processMove(8)'></td>
+      </tr>
+    </table>
+  </div>
+  <div id='btnWrapper'>
+    <a href='index.html'><button id='btn'>Reset Game</button></a>
+  </div>
+</div>
+
+<script src='logic.js'></script>
+</body>
+</html>
