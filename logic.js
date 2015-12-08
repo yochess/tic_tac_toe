@@ -68,6 +68,10 @@ var humanTurn = function(i) {
 var computerTurn = function() {
   if(counter === 9) { return false; }
 
+
+
+
+/* this is the old code, which was only 2 ply deep and then random moves.
   var ply_0 = levelZero();
   var ply_1 = levelOne();
   var ply_2 = levelTwo();
@@ -75,12 +79,8 @@ var computerTurn = function() {
   // stupid bug that consted me a LONG time since 0 == false
   var g = ply_1+1 || ply_2+1 || ply_0+1;
   g -= 1;
+*/
 
-
-
-
-
-/* testing minimax here */
   var outputs = [];
   for(var i = 0; i < 9; i++) {
     if(gridValue[i] === '') {
@@ -93,11 +93,6 @@ var computerTurn = function() {
   outputs = outputs.sort(function(a,b) { return b[0] - a[0]; });
   console.log(JSON.stringify(outputs));
   g = outputs[0][1];
-/* until here*/
-
-
-
-
 
   counter++;
   gridClicked[g] = true;
@@ -107,6 +102,8 @@ var computerTurn = function() {
 };
 
 
+
+/* old code
 var levelZero = function() {
   var r;
   do {
@@ -159,13 +156,7 @@ var levelTwo = function() {
   }
 
 };
-
-///////////////////////
-////////////////////////
-////////////////////////
-// i cannot DO IT
-///////////////////////////////
-//////////////////////////////////////////
+*/
 
 var minimax = function(nodeAry, computerMove) {
   var gameOver = function(letter, nodeAry) {
