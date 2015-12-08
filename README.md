@@ -1,8 +1,8 @@
 # tic_tac_toe
 
-UPDATE:  
-  
-  I DID IT. NEXT STEP: REFACTOR AND THEN ALPHA-BETA PRUNING!!!!
+## UPDATE:  
+
+I DID IT. NEXT STEP: REFACTOR AND THEN ALPHA-BETA PRUNING!!!!
 
 The goal is to implement a minimax algorithm which I know nothing about.  
   
