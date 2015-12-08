@@ -7,14 +7,14 @@ var gridValue = [];
 var counter = 0;
 var endGame = false;
 
-for(var i = 0; i < 9; i++) { 
-  gridClicked[i] = false; 
+for(var i = 0; i < 9; i++) {
+  gridClicked[i] = false;
   gridValue[i] = '';
 }
 
 var processMove = function(i) {
 
-  if(!gridClicked[i]) { 
+  if(!gridClicked[i]) {
 
     if(counter !== 9 && !endGame) {
       humanTurn(i);
@@ -34,8 +34,8 @@ var checkGame = function(letter) {
   var goal = '';
   for(var i = 0; i < 3; i++) { goal += letter }
 
-  if( (gridValue[0] + gridValue[1] + gridValue[2] === goal) || 
-      (gridValue[3] + gridValue[4] + gridValue[5] === goal) || 
+  if( (gridValue[0] + gridValue[1] + gridValue[2] === goal) ||
+      (gridValue[3] + gridValue[4] + gridValue[5] === goal) ||
       (gridValue[6] + gridValue[7] + gridValue[8] === goal) ||
 
       (gridValue[0] + gridValue[3] + gridValue[6] === goal) ||
@@ -54,7 +54,7 @@ var checkGame = function(letter) {
     gameOver = true;
     alert('PUSH!');
   }
-  
+
 };
 
 var humanTurn = function(i) {
@@ -137,4 +137,61 @@ var levelTwo = function() {
 
 };
 
+///////////////////////
+////////////////////////
+////////////////////////
+// i cannot DO IT
+///////////////////////////////
+//////////////////////////////////////////
+var minimax = function(nodeAry,myMove) {
+  var gameOver = function(letter) {
+    var gameOver = false;
+    var goal = '';
+    for(var i = 0; i < 3; i++) { goal += letter }
+    if( (gridValue[0] + gridValue[1] + gridValue[2] === goal) ||
+        (gridValue[3] + gridValue[4] + gridValue[5] === goal) ||
+        (gridValue[6] + gridValue[7] + gridValue[8] === goal) ||
 
+        (gridValue[0] + gridValue[3] + gridValue[6] === goal) ||
+        (gridValue[1] + gridValue[4] + gridValue[7] === goal) ||
+        (gridValue[2] + gridValue[5] + gridValue[8] === goal) ||
+
+        (gridValue[0] + gridValue[4] + gridValue[8] === goal) ||
+        (gridValue[2] + gridValue[4] + gridValue[6] === goal)  )
+    { gameOver = true; }
+    if(gameOver) return true;
+  };
+  var outputs = [];
+
+  var process = function(nodeAry, myMove, score) {
+
+    if(myMove) {
+      for(var i = 0; i < nodeAry.length; i++) {
+        if(nodeAry[i] === '') {
+          nodeAry[i] = 'X';
+          if(gameOver('X')) {
+            score = -10;
+            outputs.push([i, score]);
+          }
+          process(gridValue.slice(), false);
+          nodeAry[i] = '';
+        }
+      }
+    }
+    else {
+      for(var i = 0; i < nodeAry.length; i++) {
+        if(nodeAry[i] === '') {
+          nodeAry[i] = 'O';
+          if(gameOver('O')) {
+            score = 10;
+            outputs.push([i, score]);
+          }
+          process(gridValue.slice(), false);
+          nodeAry[i] = '';
+        }
+      }
+    }
+
+  }
+
+};
