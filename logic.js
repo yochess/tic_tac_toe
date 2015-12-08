@@ -143,6 +143,7 @@ var levelTwo = function() {
 // i cannot DO IT
 ///////////////////////////////
 //////////////////////////////////////////
+/*
 var minimax = function(nodeAry,myMove) {
   var gameOver = function(letter) {
     var gameOver = false;
@@ -186,7 +187,7 @@ var minimax = function(nodeAry,myMove) {
             score = 10;
             outputs.push([i, score]);
           }
-          process(gridValue.slice(), false);
+          process(gridValue.slice(), true);
           nodeAry[i] = '';
         }
       }
@@ -195,3 +196,4 @@ var minimax = function(nodeAry,myMove) {
   }
 
 };
+*/
