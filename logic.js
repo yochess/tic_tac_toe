@@ -76,6 +76,29 @@ var computerTurn = function() {
   var g = ply_1+1 || ply_2+1 || ply_0+1;
   g -= 1;
 
+
+
+
+
+/* testing minimax here */
+  var outputs = [];
+  for(var i = 0; i < 9; i++) {
+    if(gridValue[i] === '') {
+      var child = gridValue.slice();
+      child[i] = 'O';
+      var gogogo = minimax(child, false);
+      outputs.push([gogogo, i]);
+    }
+  }
+  outputs = outputs.sort(function(a,b) { return b[0] - a[0]; });
+  console.log(JSON.stringify(outputs));
+  g = outputs[0][1];
+/* until here*/
+
+
+
+
+
   counter++;
   gridClicked[g] = true;
   gridValue[g] = 'O';
@@ -143,57 +166,59 @@ var levelTwo = function() {
 // i cannot DO IT
 ///////////////////////////////
 //////////////////////////////////////////
-/*
-var minimax = function(nodeAry,myMove) {
-  var gameOver = function(letter) {
+
+var minimax = function(nodeAry, computerMove) {
+  var gameOver = function(letter, nodeAry) {
     var gameOver = false;
     var goal = '';
     for(var i = 0; i < 3; i++) { goal += letter }
-    if( (gridValue[0] + gridValue[1] + gridValue[2] === goal) ||
-        (gridValue[3] + gridValue[4] + gridValue[5] === goal) ||
-        (gridValue[6] + gridValue[7] + gridValue[8] === goal) ||
+    if( (nodeAry[0] + nodeAry[1] + nodeAry[2] === goal) ||
+        (nodeAry[3] + nodeAry[4] + nodeAry[5] === goal) ||
+        (nodeAry[6] + nodeAry[7] + nodeAry[8] === goal) ||
 
-        (gridValue[0] + gridValue[3] + gridValue[6] === goal) ||
-        (gridValue[1] + gridValue[4] + gridValue[7] === goal) ||
-        (gridValue[2] + gridValue[5] + gridValue[8] === goal) ||
+        (nodeAry[0] + nodeAry[3] + nodeAry[6] === goal) ||
+        (nodeAry[1] + nodeAry[4] + nodeAry[7] === goal) ||
+        (nodeAry[2] + nodeAry[5] + nodeAry[8] === goal) ||
 
-        (gridValue[0] + gridValue[4] + gridValue[8] === goal) ||
-        (gridValue[2] + gridValue[4] + gridValue[6] === goal)  )
+        (nodeAry[0] + nodeAry[4] + nodeAry[8] === goal) ||
+        (nodeAry[2] + nodeAry[4] + nodeAry[6] === goal)  )
     { gameOver = true; }
-    if(gameOver) return true;
+    return gameOver;
   };
-  var outputs = [];
 
-  var process = function(nodeAry, myMove, score) {
+  var process = function(parent, computerMove) {
+    if(gameOver('O', parent)) { return 10; }
+    if(gameOver('X', parent)) { return -10; }
+    var push = parent.every(function(elem) {
+      return elem !== '';
+    });
+    if(push) { return 0; }
 
-    if(myMove) {
-      for(var i = 0; i < nodeAry.length; i++) {
-        if(nodeAry[i] === '') {
-          nodeAry[i] = 'X';
-          if(gameOver('X')) {
-            score = -10;
-            outputs.push([i, score]);
-          }
-          process(gridValue.slice(), false);
-          nodeAry[i] = '';
+    if(computerMove) {
+      var bestValue = -100;
+      for(var i = 0; i < parent.length; i++) {
+        if(parent[i] === '') {
+          var child = parent.slice();
+          child[i] = 'O';
+          var val = process(child, false);
+          bestValue = bestValue > val ? bestValue : val;
         }
       }
+      return bestValue;
     }
     else {
-      for(var i = 0; i < nodeAry.length; i++) {
-        if(nodeAry[i] === '') {
-          nodeAry[i] = 'O';
-          if(gameOver('O')) {
-            score = 10;
-            outputs.push([i, score]);
-          }
-          process(gridValue.slice(), true);
-          nodeAry[i] = '';
+      var bestValue = 100;
+      for(var i = 0; i < parent.length; i++) {
+        if(parent[i] === '') {
+          var child = parent.slice();
+          child[i] = 'X';
+          var val = process(child, true);
+          bestValue = bestValue < val ? bestValue : val;
         }
       }
+      return bestValue;
     }
-
-  }
+  };
+  return process(nodeAry, computerMove);
 
 };
-*/
